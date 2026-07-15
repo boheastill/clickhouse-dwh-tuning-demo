@@ -1,0 +1,16 @@
+name: benchmark
+on: [push, workflow_dispatch]
+jobs:
+  prove-the-tuning:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: run demo + assert the tuned query scans far less data
+        run: |
+          bash run_demo.sh | tee out.txt
+          # Guardrail: the tuned filtered query must scan < 5% of the rows the naive one does.
+          docker exec ch-dwh-demo clickhouse-client --query "SYSTEM FLUSH LOGS"
+          NAIVE=$(docker exec ch-dwh-demo clickhouse-client --query "SELECT read_rows FROM system.query_log WHERE query LIKE '%-- q1_naive%' AND type='QueryFinish' ORDER BY event_time DESC LIMIT 1")
+          TUNED=$(docker exec ch-dwh-demo clickhouse-client --query "SELECT read_rows FROM system.query_log WHERE query LIKE '%-- q1_tuned%' AND type='QueryFinish' ORDER BY event_time DESC LIMIT 1")
+          echo "naive scanned $NAIVE rows, tuned scanned $TUNED"
+          test "$TUNED" -lt $(( NAIVE / 20 )) || { echo "regression: tuned scanned too much"; exit 1; }
