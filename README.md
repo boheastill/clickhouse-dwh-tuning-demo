@@ -68,6 +68,7 @@ sql/02_load.sql     50M synthetic rows, mock-first
 sql/03_tune.sql     the daily-rollup projection
 run_demo.sh         one command: up → load → tune → benchmark → print
 compare.sh          run the same query on both schemas, show what each scanned
+showcase.sh         fuller walkthrough: same answer, scan cost, EXPLAIN granule pruning
 docker-compose.yml  single-node ClickHouse
 RUNBOOK.md          "a dashboard got slow" triage + SLI/SLO I'd wire to Grafana
 .github/workflows/  CI that proves the tuning and guards against regressions
