@@ -14,6 +14,8 @@ and the whole thing rebuilds from empty with one command:
 
 ![A real run: compare.sh then run_demo.sh, with the numbers from system.query_log](docs/run_demo.png)
 
+▶ **Rather watch it run?** [3-minute walkthrough](https://www.loom.com/share/c01032e2e58b40a19394404b8f78d5a8) — same commands, narrated. (Everything below reproduces it without the video.)
+
 <details>
 <summary>Same numbers as text (searchable / copyable)</summary>
 
