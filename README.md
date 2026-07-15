@@ -12,8 +12,10 @@ and the whole thing rebuilds from empty with one command:
 ./run_demo.sh
 ```
 
+![A real run: compare.sh then run_demo.sh, with the numbers from system.query_log](docs/run_demo.png)
+
 <details>
-<summary><b>What <code>./run_demo.sh</code> actually prints</b> (a real run — click to expand)</summary>
+<summary>Same numbers as text (searchable / copyable)</summary>
 
 ```
 ==> RESULTS (real numbers from system.query_log)
