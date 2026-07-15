@@ -12,6 +12,30 @@ and the whole thing rebuilds from empty with one command:
 ./run_demo.sh
 ```
 
+<details>
+<summary><b>What <code>./run_demo.sh</code> actually prints</b> (a real run — click to expand)</summary>
+
+```
+==> RESULTS (real numbers from system.query_log)
+   ┌─q────────┬───ms─┬─rows_read───────┬─scanned────┐
+1. │ q1_naive │  264 │ 50.00 million   │ 1.78 GiB   │
+2. │ q1_tuned │    7 │ 466.94 thousand │ 6.23 MiB   │
+3. │ q2_naive │  139 │ 50.00 million   │ 1.07 GiB   │
+4. │ q2_tuned │   55 │ 24.70 million   │ 306.28 MiB │
+5. │ q3_naive │ 1194 │ 50.00 million   │ 1.78 GiB   │
+6. │ q3_tuned │   14 │ 135.04 thousand │ 4.64 MiB   │
+   └──────────┴──────┴─────────────────┴────────────┘
+
+table sizes at rest:
+   ┌─table────────┬─on_disk──┐
+1. │ events_naive │ 1.24 GiB │
+2. │ events_tuned │ 1.03 GiB │
+   └──────────────┴──────────┘
+```
+
+Milliseconds move a little run-to-run (cache); `scanned` is the deterministic story.
+</details>
+
 ```mermaid
 flowchart LR
   G["50M synthetic rows<br/>generated in-engine"] --> N["events_naive<br/>ORDER BY event_id"]
