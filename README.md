@@ -126,3 +126,7 @@ schema-design / partitioning / projection / `LowCardinality` decisions and how t
 *prove* them with `query_log` — not a full production cluster (that's replication,
 sharding, ingestion back-pressure, and the monitoring in `RUNBOOK.md`, which I'm
 happy to walk through). The point is the method and the measurement, shown end to end.
+
+---
+
+**Author**: [Bohea](https://boheastill.com) — independent industrial software engineer (Shenzhen). Operator HMIs · device integration · machine data into your customer's ERP. More runnable demos & engineering notes on the site.
